@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Data Sources Report</title>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4">
+    <div class="w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden">
+        <!-- Header Section -->
+        <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-center mb-2">Data Sources Report</h1>
+            <p class="text-center text-blue-100 text-lg">Comprehensive list of financial data sources</p>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="p-8">
+            <div class="mb-10">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6 pb-2 border-b border-gray-200">Financial Data Sources</h2>
+                
+                <div class="space-y-6">
+                    <!-- Source 1 -->
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-md transition-shadow duration-300">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Stock Market Dataset</h3>
+                                <p class="text-gray-600 mb-4">Comprehensive stock market data including historical prices, trading volumes, and market indicators.</p>
+                                <a href="https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset" 
+                                   target="_blank" 
+                                   class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">
+                                    <span>https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Source 2 -->
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-md transition-shadow duration-300">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Yahoo Finance Dataset</h3>
+                                <p class="text-gray-600 mb-4">Massive collection of financial data from Yahoo Finance including stock prices, historical data, and market metrics.</p>
+                                <a href="https://www.kaggle.com/datasets/iveeaten3223times/massive-yahoo-finance-dataset" 
+                                   target="_blank" 
+                                   class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">
+                                    <span>https://www.kaggle.com/datasets/iveeaten3223times/massive-yahoo-finance-dataset</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Information -->
+            <div class="bg-blue-50 rounded-xl p-6 border border-blue-200">
+                <h3 class="text-lg font-semibold text-blue-800 mb-3">Report Information</h3>
+                <p class="text-blue-700">This report provides an overview of available financial data sources for analysis purposes. All links open in a new tab for convenience.</p>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-gray-300 p-4 text-center text-sm">
+            <p>Data Sources Report &copy; 2023 | Generated for internal use</p>
+        </footer>
+    </div>
+</body>
+</html>

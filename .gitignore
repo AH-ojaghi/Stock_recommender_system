@@ -1,0 +1,52 @@
+# .gitignore for FastAPI/CatBoost/PostgreSQL Backend
+
+# -------------------------------------------------------------------
+# 1. Environment & Python Artifacts (Standard)
+# -------------------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+# Virtual Environment
+venv/
+env/
+/htmlcov/
+.nox/
+.tox/
+# Build files
+dist/
+build/
+*.egg-info/
+
+# -------------------------------------------------------------------
+# 2. Critical Security & Configuration (DO NOT COMMIT)
+# -------------------------------------------------------------------
+# Environment variables containing DB credentials, keys, etc.
+.env
+.env.*
+config.ini
+settings.pyc
+
+# -------------------------------------------------------------------
+# 3. Machine Learning Assets (Large Binary Files)
+# -------------------------------------------------------------------
+# CatBoost Model Binary File
+*.cbm
+# Joblib/Pickle files (Scaler, etc.)
+*.pkl
+*.joblib
+# HDF5 files (if used for large data)
+*.h5
+
+# -------------------------------------------------------------------
+# 4. Data Files (Large, often volatile, and sensitive)
+# -------------------------------------------------------------------
+# Input data files (do not commit raw data/features)
+*.csv
+*.tsv
+*.xlsx
+/data/*.csv
+# Logs and temporary files
+*.log
+tmp/

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operational Strategy Blueprint</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0056b3;
+            border-bottom: 3px solid #0056b3;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        h2 {
+            color: #17a2b8;
+            margin-top: 30px;
+            border-left: 4px solid #17a2b8;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #dc3545;
+            margin-top: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #333;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 5px solid #dc3545;
+            font-weight: bold;
+        }
+        .alert-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 5px solid #17a2b8;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Operational Strategy Blueprint: CatBoost Ranker 🚀</h1>
+        <p>This blueprint defines the definitive parameters, risks, and monitoring requirements for deploying the stock recommendation system based on the optimized CatBoost Ranker model.</p>
+
+        <h2>1. Core Model Configuration</h2>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                        <th>Rationale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Model</strong></td>
+                        <td>CatBoost Ranker (Optimized)</td>
+                        <td>Selected for superior risk-adjusted return (Sharpe Ratio).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ranking Objective</strong></td>
+                        <td>YetiRank</td>
+                        <td>Trained with this listwise function for ranking tasks.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Optimal Holding Period</strong></td>
+                        <td><span class="highlight"><strong>5 Trading Days</strong></span></td>
+                        <td>Achieved the highest $\text{Sharpe Ratio}$ ($\mathbf{7.25}$) and lowest $\text{Max Drawdown}$ ($\mathbf{-0.00\%}$).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recommendation Size</strong></td>
+                        <td>$\text{TOPK}=5$</td>
+                        <td>Consistent with tested portfolio diversification.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>2. Mandatory Trading Constraints (Risk Management)</h2>
+        <p>These constraints **must be enforced** in the execution layer to preserve profitability and stability.</p>
+
+        <h3>A) Transaction Cost Barrier (Critical Risk) 🛑</h3>
+        <div class="alert-danger">
+            <p><strong>Maximum Total Cost per Trade (Buy & Sell):</strong> <span class="highlight"><strong>$0.2\%$</strong></span></p>
+            <p><strong>Action:</strong> The system must be deployed only on low-cost platforms where total friction (Commissions + Slippage) is strictly less than this threshold. The model fails significantly above $0.5\%$.</p>
+        </div>
+
+        <h3>B) Liquidity and Execution Filter (Robustness)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Constraint</th>
+                        <th>Criterion</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Liquidity Filter</strong></td>
+                        <td>Daily average volume $\mathbf{> 100,000}$</td>
+                        <td>Must be applied **before** the CatBoost model scores the stocks.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rebalancing Frequency</strong></td>
+                        <td>Daily</td>
+                        <td>The model must score the universe and identify new $\text{TOPK}$ stocks every trading day.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>3. Deployment and Monitoring Strategy 🔄</h2>
+        <p>The system requires a controlled transition to live usage with continuous monitoring.</p>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Goal</th>
+                        <th>Retraining Trigger</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Phase 1: Paper Trading (Virtual)</strong></td>
+                        <td>Confirm $\text{Sharpe Ratio}$ ($\approx 7.25$) holds up against **live market data** and **real-time execution friction** for 3-6 months.</td>
+                        <td rowspan="2">If the $\text{Paper Trading Sharpe Ratio}$ drops below <span class="highlight"><strong>$5.0$</strong></span> for two consecutive months, the model **must be retrained** using the latest data ($\text{Walk-Forward}$ Optimization).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 2: Live Monitoring</strong></td>
+                        <td>Continuously track for $\text{Model Drift}$ (degradation of prediction accuracy) and $\text{Feature Drift}$ (changes in input data distribution).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>4. Required Technical Assets for Deployment</h2>
+        <div class="alert-info">
+            <p>The Deployment team requires these files and documentation:</p>
+            <ul>
+                <li><strong>Model File:</strong> <code>catboost_ranker_optimized.cbm</code></li>
+                <li><strong>Scaler File:</strong> <code>scaler.pkl</code> (Essential for standardizing new input data)</li>
+                <li><strong>Preprocessing Guide:</strong> Detailed steps on feature engineering and $\text{NaN}$ imputation must be replicated exactly.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

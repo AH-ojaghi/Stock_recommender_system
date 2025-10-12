@@ -1,0 +1,9 @@
+# FastAPI: فریمورک وب سریع
+# Uvicorn: سرور ASGI برای اجرای FastAPI
+# SQLAlchemy: ORM برای تعامل با PostgreSQL
+# psycopg2-binary: درایور PostgreSQL برای Python
+# pydantic: برای تعریف مدل‌های داده (بخشی از FastAPI)
+# joblib: برای بارگذاری مدل و Scaler
+# python-dotenv: برای مدیریت تنظیمات امن (مثل رمز عبور DB)
+
+pip install fastapi uvicorn[standard] sqlalchemy psycopg2-binary pydantic joblib pandas numpy python-dotenv

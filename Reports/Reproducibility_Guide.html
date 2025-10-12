@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Guide for Reproducibility</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        h2 {
+            color: #343a40;
+            margin-top: 30px;
+            border-left: 4px solid #ffc107;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #e9ecef;
+            color: #333;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .code-block {
+            background-color: #e8e8e8;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 5px solid #28a745;
+        }
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 5px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Technical Guide for Environment and Results Reproducibility 🛠️</h1>
+        <p>This guide ensures the complete and accurate replication of all model training, evaluation, and sensitivity backtest results for the **CatBoost Ranker** stock recommendation system.</p>
+
+        <h2>1. Software Environment and Dependencies</h2>
+        <p>To successfully execute the code, the following libraries and minimum versions are required:</p>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Library</th>
+                        <th>Minimum Version</th>
+                        <th>Installation Command</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Python</td>
+                        <td>3.8</td>
+                        <td>via conda or python.org</td>
+                    </tr>
+                    <tr>
+                        <td>pandas</td>
+                        <td>1.3.0</td>
+                        <td><code>pip install pandas</code></td>
+                    </tr>
+                    <tr>
+                        <td>scikit-learn</td>
+                        <td>1.0.0</td>
+                        <td><code>pip install scikit-learn</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>CatBoost</strong></td>
+                        <td>1.0.0</td>
+                        <td><strong><code>pip install catboost</code></strong></td>
+                    </tr>
+                    <tr>
+                        <td>joblib</td>
+                        <td>1.0.0</td>
+                        <td><code>pip install joblib</code></td>
+                    </tr>
+                    <tr>
+                        <td>matplotlib</td>
+                        <td>3.4.0</td>
+                        <td><code>pip install matplotlib</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h3>Recommended Installation Command:</h3>
+        <div class="code-block">
+            pip install pandas numpy scikit-learn catboost joblib matplotlib
+        </div>
+
+        <h2>2. Input Data and File Structure</h2>
+        <p>The following files must be located in the same directory as the notebook/scripts:</p>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Content</th>
+                        <th>Importance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>engineered_stock_data.csv</code></td>
+                        <td>All stock data with engineered features and the target column (<code>Return_7d</code>).</td>
+                        <td><strong>Essential</strong></td>
+                    </tr>
+                    <tr>
+                        <td><code>catboost_ranker_optimized.cbm</code></td>
+                        <td>The final trained CatBoost Ranker model.</td>
+                        <td><strong>Essential</strong> for Backtest</td>
+                    </tr>
+                    <tr>
+                        <td><code>scaler.pkl</code></td>
+                        <td>The $\text{StandardScaler}$ object **fitted on the training data**.</td>
+                        <td><strong>Essential</strong> for consistent data scaling.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="alert-warning">
+            <strong>Note:</strong> All backtest results rely on the existence of these files and the exact time-based data split performed in the code.
+        </div>
+
+        <h2>3. Critical Parameters for Replication</h2>
+        
+        <h3>A) Optimized CatBoost Model Parameters</h3>
+        <p>These hyperparameters must be used during model training to ensure exact result replication (<code>random_seed=42</code> is crucial):</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                        <th>Role in Reproducibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>loss_function</code></td>
+                        <td><code>YetiRank</code></td>
+                        <td>The listwise ranking objective.</td>
+                    </tr>
+                    <tr>
+                        <td><code>iterations</code></td>
+                        <td>3000</td>
+                        <td>Total number of allowed trees.</td>
+                    </tr>
+                    <tr>
+                        <td><code>depth</code></td>
+                        <td>7</td>
+                        <td>Maximum tree depth.</td>
+                    </tr>
+                    <tr>
+                        <td><code>random_seed</code></td>
+                        <td>42</td>
+                        <td>Guarantees deterministic training process.</td>
+                    </tr>
+                    <tr>
+                        <td><code>early_stopping_rounds</code></td>
+                        <td>150</td>
+                        <td>Prevents overfitting based on validation set.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>B) Operational Backtest Parameters</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                        <th>Operational Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Optimal Holding Period</td>
+                        <td><strong>5 Days</strong></td>
+                        <td>Configuration yielding the highest Sharpe Ratio.</td>
+                    </tr>
+                    <tr>
+                        <td>Top K (Recommendations)</td>
+                        <td>5</td>
+                        <td>Number of stocks purchased daily.</td>
+                    </tr>
+                    <tr>
+                        <td>Slippage Rate</td>
+                        <td>0.0005 (0.05%)</td>
+                        <td>Fixed slippage applied to each trade.</td>
+                    </tr>
+                    <tr>
+                        <td>Liquidity Filter</td>
+                        <td>Volume > 100K</td>
+                        <td>Applied during the backtest simulation.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>4. Results Verification (The Benchmark) 🏆</h2>
+        <p>Upon successfully running the backtest code, the final **Sensitivity Check Results** table should match the following benchmark metrics:</p>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Sharpe Ratio</th>
+                        <th>Max Drawdown</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Base Case (0.1% Fee, 7 Days)</td>
+                        <td>$\approx 7.12$</td>
+                        <td>$\approx -0.47\%$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Holding Period 5 Days (Optimized)</strong></td>
+                        <td><strong>$\approx 7.25$</strong></td>
+                        <td><strong>$\approx -0.00\%$</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="alert-success">
+            <strong>Verification Success:</strong> If the Sharpe Ratio for the 5-day holding period is higher than the Base Case (7-day) Sharpe Ratio of 7.12, the results have been successfully replicated.
+        </div>
+    </div>
+</body>
+</html>
