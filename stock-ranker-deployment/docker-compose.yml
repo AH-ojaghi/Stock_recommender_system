@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: stock-ranker-backend
+    volumes:
+      - ./model_artifacts:/app/model_artifacts:ro
+      - ./backend/app:/app/app:ro
+    env_file:
+      - ./.env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: stock-ranker-frontend
+    env_file:
+      - ./.env
+    ports:
+      - "3000:80"  # Nginx serves on port 80 inside container; map to host:3000
+    depends_on:
+      - backend
+    restart: unless-stopped
