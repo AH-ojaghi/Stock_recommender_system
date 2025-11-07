@@ -1,8 +1,9 @@
 fastapi
 uvicorn[standard]
+gunicorn
 pandas
 scikit-learn
 catboost
-python-multipart
 joblib
-gunicorn
+yfinance
+ta

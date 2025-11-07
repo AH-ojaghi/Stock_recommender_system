@@ -1,0 +1,92 @@
+========================================
+== 1. PROJECT GOAL AND TECH STACK ==
+========================================
+ 
+USER GOAL (Sarmayehgozar):
+This project serves as an investment recommendation API for general investors. The goal is to return a ranked list of stocks (with symbols) based on the model's score, without requiring the user to upload a large CSV file.
+ 
+TECH STACK (Please fill the details below):
+Language: Python 3.x
+Framework: FastAPI / Flask / Django (Which one?)
+Database: PostgreSQL / MongoDB / SQLite (Which one?)
+Libraries (Key): Pandas, Scikit-learn, etc.
+Execution: Docker / Docker Compose
+ 
+========================================
+== 2. PROJECT FOLDER STRUCTURE ==
+========================================
+Folder PATH listing
+Volume serial number is F602-A2A1
+C:.
+|   .env
+|   docker-compose.yml
+|   PROJECT_DETAILS.txt
+|   test_input.csv
+|   
++---backend
+|   |   Dockerfile
+|   |   requirements.txt
+|   |   
+|   \---app
+|           api.py
+|           utils.py
+|           
++---frontend
+|   |   Dockerfile
+|   |   nginx.conf
+|   |   package.json
+|   |   
+|   +---node_modules
+|   +---public
+|   |       index.html
+|   |       
+|   \---src
+|       |   App.js
+|       |   index.js
+|       |   
+|       \---components
+|               UploadForm.js
+|               
+\---model_artifacts
+        catboost_ranker_optimized.cbm
+        feature_cols.json
+        scaler.pkl
+        
+ 
+========================================
+== 3. KEY FILE CONTENTS ==
+========================================
+
+--- START OF FILE: docker-compose.yml ---
+
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: stock-ranker-backend
+    volumes:
+      - ./model_artifacts:/app/model_artifacts:ro
+      - ./backend/app:/app/app:ro
+    env_file:
+      - ./.env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: stock-ranker-frontend
+    env_file:
+      - ./.env
+    ports:
+      - "3000:80"  # Nginx serves on port 80 inside container; map to host:3000
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+
+--- END OF FILE: docker-compose.yml ---
+

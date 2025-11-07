@@ -1,0 +1,84 @@
+{
+    "top_k_recommendations": [
+        {
+            "id": "PGR",
+            "score": -0.878578339555654,
+            "extra_data": {
+                "P/E Ratio": 11.859693,
+                "Market Cap": 126641872896.0
+            }
+        },
+        {
+            "id": "JPM",
+            "score": -0.878578339555654,
+            "extra_data": {
+                "P/E Ratio": 15.546039,
+                "Market Cap": 854852501504.0
+            }
+        },
+        {
+            "id": "CME",
+            "score": -0.8789006135811895,
+            "extra_data": {
+                "P/E Ratio": 26.949663,
+                "Market Cap": 100387373056.0
+            }
+        },
+        {
+            "id": "COP",
+            "score": -0.8789006135811895,
+            "extra_data": {
+                "P/E Ratio": 11.608579,
+                "Market Cap": 108158402560.0
+            }
+        },
+        {
+            "id": "EOG",
+            "score": -0.8789006135811895,
+            "extra_data": {
+                "P/E Ratio": 10.226964,
+                "Market Cap": 57569546240.0
+            }
+        },
+        {
+            "id": "BRK-B",
+            "score": -0.8789006135811895,
+            "extra_data": {
+                "P/E Ratio": 15.9368,
+                "Market Cap": 1073667702784.0
+            }
+        },
+        {
+            "id": "GS",
+            "score": -0.8789006135811895,
+            "extra_data": {
+                "P/E Ratio": 15.85401,
+                "Market Cap": 234187177984.0
+            }
+        },
+        {
+            "id": "NFLX",
+            "score": -0.8836901206664839,
+            "extra_data": {
+                "P/E Ratio": 45.710175,
+                "Market Cap": 464465723392.0
+            }
+        },
+        {
+            "id": "MOH",
+            "score": -0.8836901206664839,
+            "extra_data": {
+                "P/E Ratio": 9.212001,
+                "Market Cap": 7694323200.0
+            }
+        },
+        {
+            "id": "OXY",
+            "score": -0.8851985345837562,
+            "extra_data": {
+                "P/E Ratio": 24.126469,
+                "Market Cap": 40376795136.0
+            }
+        }
+    ]
+}

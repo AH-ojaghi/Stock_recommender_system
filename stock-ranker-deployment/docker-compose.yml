@@ -6,8 +6,10 @@ services:
       context: ./backend
     container_name: stock-ranker-backend
     volumes:
-      - ./model_artifacts:/app/model_artifacts:ro
-      - ./backend/app:/app/app:ro
+      # حذف :ro. این پوشه نیاز به قابلیت نوشتن برای ذخیره خروجی JSON و مصنوعات جدید دارد.
+      - ./model_artifacts:/app/model_artifacts
+      # حذف :ro. این پوشه نیاز به قابلیت نوشتن/ویرایش کد در حین توسعه دارد.
+      - ./backend/app:/app/app
     env_file:
       - ./.env
     ports:
