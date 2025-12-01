@@ -13,18 +13,6 @@ The system follows a Scheduled Inference pattern:
 4.  **API (`main.py`):** A FastAPI server exposes the latest ranked recommendations.
 5.  **Scheduler:** A background thread manages the daily execution of the Scoring Engine.
 
-### 📊 Model Performance Highlights
-
-The selected production model is a **CatBoost Ranker** trained on the $\text{YetiRank}$ objective, optimized for $\text{NDCG}@5$.
-
-| Metric | Base Case (0.1% Fee, 7 Days) | Target Goal |
-| :--- | :---: | :--- |
-| **Total Return** | **127.37%** | Maximize |
-| **Annualized Sharpe Ratio** | **7.12** | $> 1.0$ (High risk-adjusted return) |
-| **Max Drawdown (MDD)** | **-0.47%** | $< 10\%$ (Risk control) |
-
-The backtesting results confirmed the strategy's high stability and strong performance under realistic transaction costs.
-
 ### 💡 API Endpoint
 
 Retrieve the latest stock recommendations:
