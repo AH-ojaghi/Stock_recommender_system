@@ -24,8 +24,3 @@ Retrieve the latest stock recommendations:
 ### 🛑 Production Disclaimer
 
 The included scheduler (`threading.Thread` in `main.py`) is for local demonstration. For production deployment, use dedicated MLOps tools for scheduling and execution (e.g., **Celery**, **Apache Airflow**, or a **Kubernetes CronJob**).
-
-
-### ⚠️ نکته مهم در مورد دپلوی در Production
-
-زمان‌بندی استفاده شده در `main.py` (با استفاده از `threading`) فقط برای اهداف دمو و آزمایش محلی مناسب است. در محیط عملیاتی، باید از راهکارهای قوی‌تر مدیریت تسک مانند **Celery**، **Airflow** یا **Kubernetes CronJobs** استفاده شود تا از عملکرد مستقل و قابل اعتماد وظایف اطمینان حاصل شود.
